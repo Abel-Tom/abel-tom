@@ -1,0 +1,43 @@
+.company{
+    .company-div{
+        display: flex; justify-content: space-between;
+        margin: 0px
+    }
+    .role-div{
+        display: flex; justify-content: space-between;
+        margin: 0px
+    }
+}
+
+.education-div{
+    
+    .row1{
+        font-size: 35px;
+        display: flex; justify-content: space-between;
+        .year{
+            font-size: 12px;
+            
+        }
+    }
+    .row2{
+        font-size: 20px;
+        display: flex; justify-content: space-between;
+        .place{
+            font-size: 11px;
+            
+        }
+    }
+
+}
+body{
+    color: #000000;
+    background-color: #ffffff;
+    margin: 40px auto;
+    max-width: 700px;
+    line-height: 1.6em;
+    font-size: 18px;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+
