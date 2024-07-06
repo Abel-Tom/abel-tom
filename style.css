@@ -223,7 +223,7 @@ p {
   border-radius: 20px;
   background-color: rgba(241, 241, 241, 1);
   /* box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25); */
-  box-shadow: -2px -2px 16px 8px rgba(130, 86, 232, 0.2);
+  box-shadow: -2px -2px 16px 6px rgba(130, 86, 232, 0.2);
   backdrop-filter: blur(15px);
   transition: 0.3s;
   margin-bottom: 3%;
@@ -232,7 +232,7 @@ p {
 /* On mouse-over, add a deeper shadow */
 .card:hover {
   /* box-shadow: 0 8px 16px 0 rgba(130, 86, 232, 0.2); */
-  box-shadow: -4px -4px 16px 8px rgba(130, 86, 232, 0.50);
+  /* box-shadow: -4px -4px 16px 8px rgba(130, 86, 232, 0.50); */
 }
 
 ul.no-bullets {
@@ -293,19 +293,6 @@ img {
   font-size: 15px;
   text-align: center;
 }
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-/* .active, .collapsible:hover {
-  background-color: #ccc;
-} */
-
-/* Style the collapsible content. Note: hidden by default */
-/* .content {
-  padding: 0 18px;
-  display: none;
-  overflow: hidden;
-  background-color: #f1f1f1;
-} */
 .content {
   padding: 0 18px;
   background-color: #f1f1f1;
@@ -314,18 +301,6 @@ img {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
 }
-
-/* .collapsible:after {
-  content: '\002B'; 
-  color: white;
-  font-weight: bold;
-  float: right;
-  margin-left: 5px;
-}
-
-.active:after {
-  content: "\2212";
-} */
 
 .arrow2 {
   border: solid black;
@@ -375,6 +350,13 @@ img {
   background-color: rgb(255, 255, 255);
   /* box-shadow: 0px 0px 10px 2px rgba(14, 15, 15, 0.62); */
   box-shadow: 0px 0px 10px 2px rgba(1, 123, 253, 0.62);
+}
+
+.skill{
+  padding: 2%;
+  border-radius: 31px;
+  border: 5px solid rgb(0, 0, 0);
+  background-color: #08f;
 }
 
 
