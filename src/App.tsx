@@ -3,7 +3,7 @@ import Flipper from "./components/Flipper";
 import Company from "./components/Company";
 
 import './App.css';
-import { MouseEventHandler } from "react";
+import { MouseEvent } from "react";
 
 
 
@@ -18,24 +18,20 @@ function App() {
   My work involves building REST APIs using Django or Flask and frontend user interfaces using AngularJS. `
   const stringList: string[] = ['Developer', 'Problem Solver', 'Designer'];
 
-  const toggleDiv = (event)=>{
-    const content = document.getElementsByClassName("content")[0] as HTMLElement;    
+
+  const toggleDiv = (event: MouseEvent<HTMLButtonElement>)=>{
+    const content = document.getElementsByClassName("content")[0] as HTMLElement;
+    const clickedButton = event.currentTarget as HTMLButtonElement;    
+    const buttonDiv = clickedButton.childNodes[0] as HTMLDivElement;
+    const iDiv = clickedButton.childNodes[1] as HTMLDivElement;
     if (content.style.maxHeight) {
       content.style.maxHeight = '';
-      if (event.target && event.target.firstChild){
-        event.target.firstChild.textContent = "View More Projects";
-      }
-      if (event.target && event.target.nextSibling){
-        event.target.nextSibling.className = "arrow2 down";
-      }
+      buttonDiv.innerHTML = "View More Projects";
+      iDiv.className = "arrow2 down";
     } else {
       content.style.maxHeight = content.scrollHeight + "px";
-      if (event.target && event.target.firstChild){
-        event.target.firstChild.textContent = "View Less Projects";
-      }
-      if (event.target && event.target.nextSibling){
-        event.target.nextSibling.className = "arrow2 up";
-      }
+      buttonDiv.innerHTML = "View More Projects";
+      iDiv.className = "arrow2 down";
     }
   }
 
@@ -78,7 +74,7 @@ function App() {
       <a className="resume" href="resume.pdf" download="resume.pdf">View Full Resume</a>
     </div>
     <div className="collapsible-div">
-      <button type="button" className="collapsible" onClick={toggleDiv}><div>View More Projects</div><i className="arrow2 down"></i></button>
+      <button id="collapsible-button" type="button" className="collapsible" onClick={toggleDiv}><div>View More Projects</div><i className="arrow2 down"></i></button>
     </div>
     <div className="content">
       <div className="exp-card">
