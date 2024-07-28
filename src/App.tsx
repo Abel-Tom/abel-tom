@@ -3,6 +3,7 @@ import Flipper from "./components/Flipper";
 import Company from "./components/Company";
 
 import './App.css';
+import { MouseEventHandler } from "react";
 
 
 
@@ -17,7 +18,7 @@ function App() {
   My work involves building REST APIs using Django or Flask and frontend user interfaces using AngularJS. `
   const stringList: string[] = ['Developer', 'Problem Solver', 'Designer'];
 
-  const toggleDiv = (event: MouseEvent)=>{
+  const toggleDiv = (event)=>{
     const content = document.getElementsByClassName("content")[0] as HTMLElement;    
     if (content.style.maxHeight) {
       content.style.maxHeight = '';
