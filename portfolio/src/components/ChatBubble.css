@@ -1,0 +1,74 @@
+.stack-div{
+  margin-right: 1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+.ai{
+  margin-top:1%;
+  color:aliceblue;
+  font-weight: 700;
+  color: #878d93;
+}
+.align-left{
+    display: flex;
+    justify-content: flex-start; 
+  }
+  .left{
+    margin-left:1%;
+  }
+  .left:before {
+    content: "";
+    position: absolute;
+    top: 95%;
+    left: 9px;
+    width: 0;
+    border-top: 10px solid rgba(241, 241, 241, 1);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+  }
+
+.align-right{
+
+    display: flex;
+    justify-content: flex-end; /* Aligns to right side */
+}
+.right{
+  margin-right: 3%;
+}
+.right:before {
+  content: "";
+  position: absolute;
+  top: 95%;
+  right: 9px;
+  width: 0;
+  border-top: 10px solid rgba(241, 241, 241, 1);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+.chat-bubble {
+  font-size: 16px;
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 20px;
+  background-color: rgba(241, 241, 241, 1);
+  box-shadow: 0px 0px 6px 6px rgba(4, 55, 251, 0.09);
+  backdrop-filter: blur(15px);
+  transition: 0.3s;
+  padding: 1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  min-width: 15px;
+}
+
+.loader {
+  width: 15px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  animation: l5 1s infinite linear alternate;
+}
+@keyframes l5 {
+    0%  {box-shadow: 20px 0 #000, -20px 0 #0002;background: #000 }
+    33% {box-shadow: 20px 0 #000, -20px 0 #0002;background: #0002}
+    66% {box-shadow: 20px 0 #0002,-20px 0 #000; background: #0002}
+    100%{box-shadow: 20px 0 #0002,-20px 0 #000; background: #000 }
+}
