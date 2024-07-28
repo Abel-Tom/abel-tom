@@ -17,16 +17,24 @@ function App() {
   My work involves building REST APIs using Django or Flask and frontend user interfaces using AngularJS. `
   const stringList: string[] = ['Developer', 'Problem Solver', 'Designer'];
 
-  const toggleDiv = (event)=>{
+  const toggleDiv = (event: MouseEvent)=>{
     const content = document.getElementsByClassName("content")[0] as HTMLElement;    
     if (content.style.maxHeight) {
       content.style.maxHeight = '';
-      event.target.firstChild.textContent = "View More Projects";
-      event.target.nextSibling.className = "arrow2 down"
+      if (event.target && event.target.firstChild){
+        event.target.firstChild.textContent = "View More Projects";
+      }
+      if (event.target && event.target.nextSibling){
+        event.target.nextSibling.className = "arrow2 down";
+      }
     } else {
       content.style.maxHeight = content.scrollHeight + "px";
-      event.target.firstChild.textContent = "View Less Projects";
-      event.target.nextSibling.className = "arrow2 up"
+      if (event.target && event.target.firstChild){
+        event.target.firstChild.textContent = "View Less Projects";
+      }
+      if (event.target && event.target.nextSibling){
+        event.target.nextSibling.className = "arrow2 up";
+      }
     }
   }
 
