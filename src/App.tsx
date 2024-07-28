@@ -1,20 +1,13 @@
 import ThreeDText from "./components/ThreeDText";
-import ChatBubble from "./components/ChatBubble";
 import Flipper from "./components/Flipper";
 import Company from "./components/Company";
-import ChatBubbleLoader from "./components/ChatBubbleLoader";
 
 import './App.css';
-import  { useState, ChangeEvent  } from 'react';
 
-import axios from 'axios';
+
 
 function App() {
-  const [refresh, setRefresh] = useState(true);
-  const [loading, setLoading] = useState(false);
-  const Sentanario: string = `Hi, I am Sentanario, Abel's assistant. 
-    If you have any questions related to Abel's expertise or availability for work
-    you can ask me.`
+
     const about: string = `I discovered the world of coding through game development. 
   Unity game engine helped me get started.It didn't matter to me whether I did game development or web programming 
   I just wanted to do coding full time.`
@@ -23,23 +16,6 @@ function App() {
   I played a significant role in building three out of five products that we currently offer. 
   My work involves building REST APIs using Django or Flask and frontend user interfaces using AngularJS. `
   const stringList: string[] = ['Developer', 'Problem Solver', 'Designer'];
-  const baseUrl: string = 'http://localhost:8000/';
-  const [items, setItems] = useState([<ChatBubble name="ai" content={Sentanario}/>]);
-
-  
-  const [inputValue, setInputValue] = useState('');
-
-  const addItem = (elem: JSX.Element, elem2?: JSX.Element) => {
-    if (elem2){
-      setItems([...items, elem, elem2]); 
-    }else{
-      setItems([...items, elem]); 
-    }
-  };
-
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>)=>{
-    setInputValue(event?.target.value)
-  }
 
   const toggleDiv = (event)=>{
     const content = document.getElementsByClassName("content")[0] as HTMLElement;    
@@ -54,44 +30,6 @@ function App() {
     }
   }
 
-  const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      sendMessage();
-    }
-  };
-
-  const sendPostReq = async (url: string, message: string) =>{
-    const route_url: string = 'reply';
-    const data = {
-      message: message,
-      refresh: refresh
-    };
-    setRefresh(false);
-    url = baseUrl.concat(route_url);
-    try{
-      const response = await axios.post(url, data);
-      return response.data.message;
-    }catch(error: unknown) {
-      return error.code;
-    }
-  }
-
-  const sendMessage = async () => {
-    if (!inputValue || inputValue.trim() === '' || loading) {
-      console.log("Input is empty, contains only whitespace or Sentanario is busy");
-      return;
-    }
-    const HumanBubble = (<ChatBubble name="user" content={inputValue}/>)
-    addItem(HumanBubble)
-    setLoading(true)
-    const resp = await sendPostReq('', inputValue);
-    const AIBubble = <ChatBubble name="ai" content={resp}/>
-    addItem(HumanBubble, AIBubble)
-    setInputValue('')
-    setLoading(false)
-  }
-  
   return (
     <div className="body-div">
       <div className="align-center-div">
@@ -165,34 +103,6 @@ function App() {
         <img  src="img/esign 1.webp"/>
       </div>
     </div>
-      </div>
-       
-      <div className="align-center-div">
-        <ThreeDText name="prof" content="KNOW MORE"/>
-      </div>
-      <div id="chatCard" className="chat card container" >
-        <div className="top-div">
-          {items.map((item,index) => 
-            <div key={index}>{item}</div>)
-          }
-          {loading ? (
-              <ChatBubbleLoader visible={loading}/>
-            ) : (
-              <div>
-              </div>
-            )}
-        </div>
-        <div className="align-center-div">
-          <input type="text" value={inputValue} placeholder="Type your message"
-          onChange={handleInputChange} onKeyDown={handleKeyDown}/>
-          <button className="send-button" onClick={sendMessage}>
-            send
-            <svg viewBox="0 0 24 24">
-                <path d="M3.4 20.4l17.45-7.48c.81-.35.81-1.49 0-1.84L3.4 3.6c-.66-.29-1.39.2-1.39.91L2 9.12c0 .5.37.93.87.99L17 12 2.87 13.88c-.5.07-.87.5-.87 1l.01 4.61c0 .71.73 1.2 1.39.91z"/>
-            </svg>
-          </button>
-        </div>
-        
       </div>
     </div>
   )
