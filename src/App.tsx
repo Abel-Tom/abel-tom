@@ -5,6 +5,7 @@ import Company from "./components/Company";
 import crmImg from "./assets/crm-1.webp";
 import esignImg from "./assets/esign 1.webp"
 import usrManageImg from "./assets/user-management-1.webp";
+import resume from "./assets/resume.pdf";
 
 import './App.css';
 import { MouseEvent } from "react";
@@ -74,7 +75,7 @@ function App() {
       <img  src={crmImg} alt="There should be an image here"/>
     </div>
     <div className="collapsible-div">
-      <a className="resume" href="resume.pdf" download="resume.pdf">View Full Resume</a>
+      <a className="resume" href={resume} download={resume}>View Full Resume</a>
     </div>
     <div className="collapsible-div">
       <button id="collapsible-button" type="button" className="collapsible" onClick={toggleDiv}><div>View More Projects</div><i className="arrow2 down"></i></button>
