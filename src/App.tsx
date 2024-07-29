@@ -33,8 +33,8 @@ function App() {
       iDiv.className = "arrow2 down";
     } else {
       content.style.maxHeight = content.scrollHeight + "px";
-      buttonDiv.innerHTML = "View More Projects";
-      iDiv.className = "arrow2 down";
+      buttonDiv.innerHTML = "View Less Projects";
+      iDiv.className = "arrow2 up";
     }
   }
 
