@@ -2,9 +2,12 @@ import ThreeDText from "./components/ThreeDText";
 import Flipper from "./components/Flipper";
 import Company from "./components/Company";
 
+import crmImg from "./assets/crm-1.webp";
+import esignImg from "./assets/esign 1.webp"
+import usrManageImg from "./assets/user-management-1.webp";
+
 import './App.css';
 import { MouseEvent } from "react";
-
 
 
 function App() {
@@ -68,7 +71,7 @@ function App() {
           Leveraged Nx mono repo for modular code organisation and management.
         </div>
       </div>
-      <img  src="img/crm-1.webp"/>
+      <img  src={crmImg} alt="There should be an image here"/>
     </div>
     <div className="collapsible-div">
       <a className="resume" href="resume.pdf" download="resume.pdf">View Full Resume</a>
@@ -90,7 +93,7 @@ function App() {
             Effectively utilised Django Middleware to track user activity.
           </div>
         </div>
-        <img  src="img/user-management-1.webp"/>
+        <img  src={usrManageImg}/>
       </div>
       <div className="exp-card">
         <div className="exp-text">
@@ -105,7 +108,7 @@ function App() {
             Employed Celery to create asynchronous tasks to send notifications, files and reminders.
           </div>
         </div>
-        <img  src="img/esign 1.webp"/>
+        <img  src={esignImg}/>
       </div>
     </div>
       </div>
