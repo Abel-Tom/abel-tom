@@ -13,9 +13,8 @@ import { MouseEvent } from "react";
 
 function App() {
 
-    const about: string = `I discovered the world of coding through game development. 
-  Unity game engine helped me get started.It didn't matter to me whether I did game development or web programming 
-  I just wanted to do coding full time.`
+    const about: string = `Building software and web apps using Python and Python based web frameworks. Back in 2017 I read an interesting book called
+    Automate the boring stuff with Python and went down the mesmerizing rabbit hole of Python based software developement`
 
   const aboutWork: string = `At TeamWave I built work management apps used by small businesses around the world. 
   I played a significant role in building three out of five products that we currently offer. 
@@ -55,7 +54,7 @@ function App() {
         <ThreeDText name="prof" content="WORK EXPERIENCE"/>
       </div>
       <div className="work-exp card">
-        <Company name="TeamWave Inc" location="remote" role="Full Stack Developer" start="Oct 2021" end="Present"/>
+        <Company name="TeamWave Inc" location="remote" role="Full Stack Developer" start="Oct 2021" end="March 2024"/>
         <div className="text-center-div">
           {aboutWork}
         </div>
