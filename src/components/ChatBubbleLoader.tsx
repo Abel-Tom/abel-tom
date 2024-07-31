@@ -1,14 +1,17 @@
 import './ChatBubble.css';
 import './ChatBubbleLoader.css';
 
+interface Props {
+  visible: boolean
+}
 
 
-const ChatBubbleLoader = (visible: boolean) => {
+const ChatBubbleLoader = (props: Props) => {
     return (
         <div>
           <div className={"align-right"}>
             <div className={"right chat-bubble shifter"}>
-                {visible ? (
+                {props.visible ? (
                     <div className='loader'></div>
                 ) : (
                     <div>

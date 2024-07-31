@@ -1,6 +1,7 @@
 import ThreeDText from "./components/ThreeDText";
 import Flipper from "./components/Flipper";
 import Company from "./components/Company";
+import ChatBubble from "./components/ChatBubble";
 
 import crmImg from "./assets/crm-1.webp";
 import esignImg from "./assets/esign 1.webp"
@@ -8,18 +9,84 @@ import usrManageImg from "./assets/user-management-1.webp";
 import resume from "./assets/resume.pdf";
 
 import './App.css';
-import { MouseEvent } from "react";
+
+import { ChangeEvent, MouseEvent, useState } from "react";
+
+import axios, { AxiosError } from 'axios';
+import ChatBubbleLoader from "./components/ChatBubbleLoader";
 
 
 function App() {
+  const [refresh, setRefresh] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const Sentanario: string = `Hi, I am Sentanario, Abel's assistant. 
+  If you have any questions related to Abel's expertise or availability for work
+  you can ask me.`
 
-    const about: string = `Building software and web apps using Python and Python based web frameworks. Back in 2017 I read an interesting book called
-    Automate the boring stuff with Python and went down the mesmerizing rabbit hole of Python based software developement`
+  const about: string = `Building software and web apps using Python and Python based web frameworks. Back in 2017 I read an interesting book called
+  Automate the boring stuff with Python and went down the mesmerizing rabbit hole of Python based software developement`
 
   const aboutWork: string = `At TeamWave I built work management apps used by small businesses around the world. 
   I played a significant role in building three out of five products that we currently offer. 
   My work involves building REST APIs using Django or Flask and frontend user interfaces using AngularJS. `
   const stringList: string[] = ['Developer', 'Problem Solver', 'Designer'];
+  // const baseUrl: string = 'http://localhost:8000/';
+  const baseUrl: string = 'https://portfolio-dzsa.vercel.app/';
+  const [items, setItems] = useState([<ChatBubble name="ai" content={Sentanario}/>]);
+  const [inputValue, setInputValue] = useState('');
+
+  const addItem = (elem: JSX.Element, elem2?: JSX.Element) => {
+    if (elem2){
+      setItems([...items, elem, elem2]); 
+    }else{
+      setItems([...items, elem]); 
+    }
+  };
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>)=>{
+    setInputValue(event?.target.value)
+  }
+
+  const handleKeyDown = (event: { key: string; preventDefault: () => void; }) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      sendMessage();
+    }
+  };
+
+  const sendPostReq = async (url: string, message: string) =>{
+    const route_url: string = 'reply';
+    const data = {
+      message: message,
+      refresh: refresh
+    };
+    
+    setRefresh(false);
+    url = baseUrl.concat(route_url);
+    console.log('url ', url);
+    try{
+      const response = await axios.post(url, data);
+      return response.data.message;
+    }catch(error: unknown) {
+      const typedError = error as AxiosError;
+      return typedError.code;
+    }
+  }
+
+  const sendMessage = async () => {
+    if (!inputValue || inputValue.trim() === '' || loading) {
+      console.log("Input is empty, contains only whitespace or Sentanario is busy");
+      return;
+    }
+    const HumanBubble = (<ChatBubble name="user" content={inputValue}/>)
+    addItem(HumanBubble)
+    setLoading(true)
+    const resp = await sendPostReq('', inputValue);
+    const AIBubble = <ChatBubble name="ai" content={resp}/>
+    addItem(HumanBubble, AIBubble)
+    setInputValue('')
+    setLoading(false)
+  }
 
 
   const toggleDiv = (event: MouseEvent<HTMLButtonElement>)=>{
@@ -111,6 +178,34 @@ function App() {
         <img  src={esignImg}/>
       </div>
     </div>
+      </div>
+
+      <div className="align-center-div">
+        <ThreeDText name="prof" content="KNOW MORE"/>
+      </div>
+      <div id="chatCard" className="chat card container" >
+        <div className="top-div">
+          {items.map((item,index) => 
+            <div key={index}>{item}</div>)
+          }
+          {loading ? (
+              <ChatBubbleLoader visible={loading}/>
+            ) : (
+              <div>
+              </div>
+            )}
+        </div>
+        <div className="align-center-div">
+          <input type="text" value={inputValue} placeholder="Type your message"
+          onChange={handleInputChange} onKeyDown={handleKeyDown}/>
+          <button className="send-button" onClick={sendMessage}>
+            send
+            <svg viewBox="0 0 24 24">
+                <path d="M3.4 20.4l17.45-7.48c.81-.35.81-1.49 0-1.84L3.4 3.6c-.66-.29-1.39.2-1.39.91L2 9.12c0 .5.37.93.87.99L17 12 2.87 13.88c-.5.07-.87.5-.87 1l.01 4.61c0 .71.73 1.2 1.39.91z"/>
+            </svg>
+          </button>
+        </div>
+        
       </div>
     </div>
   )
