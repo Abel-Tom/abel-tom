@@ -63,7 +63,6 @@ function App() {
     
     setRefresh(false);
     url = baseUrl.concat(route_url);
-    console.log('url ', url);
     try{
       const response = await axios.post(url, data);
       return response.data.message;
