@@ -23,8 +23,8 @@ function App() {
   If you have any questions related to Abel's expertise or availability for work
   you can ask me.`
 
-  const about: string = `Building software and web apps using Python and Python based web frameworks. Back in 2017 I read an interesting book called
-  Automate the boring stuff with Python and went down the mesmerizing rabbit hole of Python based software developement`
+  const about: string = `Leveraging Python's powerful frameworks for backend development and AngularJS for building engaging frontends. Back in 2017 I read an interesting book called
+  Automate the Boring Stuff with Python and went down the mesmerizing rabbit hole of Python based software developement.`
 
   const aboutWork: string = `At TeamWave I built work management apps used by small businesses around the world. 
   I played a significant role in building three out of five products that we currently offer. 
@@ -53,6 +53,17 @@ function App() {
       sendMessage();
     }
   };
+
+  // const test = async () =>{
+  //   const url: string = baseUrl
+  //   try{
+  //     const response = await axios.get(url);
+  //     console.log(response.data);
+  //   }catch(error: unknown) {
+  //     const typedError = error as AxiosError;
+  //     return typedError.code;
+  //   }
+  // }
 
   const sendPostReq = async (url: string, message: string) =>{
     const route_url: string = 'reply';
@@ -103,6 +114,7 @@ function App() {
       iDiv.className = "arrow2 up";
     }
   }
+  // test();
 
   return (
     <div className="body-div">
