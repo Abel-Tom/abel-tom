@@ -54,7 +54,7 @@ function App() {
     }
   };
 
-  const MyComponent = () => {
+  const TestComponent = () => {
     useEffect(() => {
       const fetchData = async () => {
         const url: string = baseUrl
@@ -125,7 +125,7 @@ function App() {
 
   return (
     <div className="body-div">
-      {MyComponent()}
+      {TestComponent()}
       <div className="align-center-div">
         <ThreeDText name="hit-the-floor" content="ABEL THOMAS"/>
       </div>
