@@ -10,7 +10,7 @@ import resume from "./assets/resume.pdf";
 
 import './App.css';
 
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, MouseEvent, useState, useEffect } from "react";
 
 import axios, { AxiosError } from 'axios';
 import ChatBubbleLoader from "./components/ChatBubbleLoader";
@@ -54,16 +54,23 @@ function App() {
     }
   };
 
-  // const test = async () =>{
-  //   const url: string = baseUrl
-  //   try{
-  //     const response = await axios.get(url);
-  //     console.log(response.data);
-  //   }catch(error: unknown) {
-  //     const typedError = error as AxiosError;
-  //     return typedError.code;
-  //   }
-  // }
+  const MyComponent = () => {
+    useEffect(() => {
+      const fetchData = async () => {
+        const url: string = baseUrl
+        try{
+          const response = await axios.get(url);
+          console.log(response.data);
+        }catch(error: unknown) {
+          const typedError = error as AxiosError;
+          return typedError.code;
+        }
+      };
+  
+      fetchData();
+    }, []);
+    return <div></div>
+  }
 
   const sendPostReq = async (url: string, message: string) =>{
     const route_url: string = 'reply';
@@ -118,6 +125,7 @@ function App() {
 
   return (
     <div className="body-div">
+      {MyComponent()}
       <div className="align-center-div">
         <ThreeDText name="hit-the-floor" content="ABEL THOMAS"/>
       </div>
@@ -223,4 +231,3 @@ function App() {
 }
 
 export default App
-
