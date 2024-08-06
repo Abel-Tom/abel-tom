@@ -73,14 +73,13 @@ function App() {
   }
 
   const sendPostReq = async (url: string, message: string) =>{
-    const route_url: string = 'reply';
     const data = {
       message: message,
       refresh: refresh
     };
     
     setRefresh(false);
-    url = baseUrl.concat(route_url);
+    url = baseUrl.concat(url);
     try{
       const response = await axios.post(url, data);
       return response.data.message;
@@ -90,6 +89,19 @@ function App() {
     }
   }
 
+
+  const LogComponent = () => {
+    useEffect(() => {
+      const fetchData = async () => {
+        let resp = await sendPostReq('log', 'hello');
+        resp = '';
+        console.log(resp);
+      };
+  
+      fetchData();
+    }, []);
+    return <div></div>
+  }
   const sendMessage = async () => {
     if (!inputValue || inputValue.trim() === '' || loading) {
       console.log("Input is empty, contains only whitespace or Sentanario is busy");
@@ -98,7 +110,7 @@ function App() {
     const HumanBubble = (<ChatBubble name="user" content={inputValue}/>)
     addItem(HumanBubble)
     setLoading(true)
-    const resp = await sendPostReq('', inputValue);
+    const resp = await sendPostReq('reply', inputValue);
     const AIBubble = <ChatBubble name="ai" content={resp}/>
     addItem(HumanBubble, AIBubble)
     setInputValue('')
@@ -125,6 +137,7 @@ function App() {
 
   return (
     <div className="body-div">
+      {LogComponent()}
       {TestComponent()}
       <div className="align-center-div">
         <ThreeDText name="hit-the-floor" content="ABEL THOMAS"/>
