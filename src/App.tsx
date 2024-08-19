@@ -5,7 +5,7 @@ import ChatBubble from "./components/ChatBubble";
 
 import crmImg from "./assets/crm-1.webp";
 import esignImg from "./assets/esign 1.webp"
-import usrManageImg from "./assets/user-management-1.webp";
+import workAI from "./assets/WorkAI.webp";
 import resume from "./assets/resume.pdf";
 
 import './App.css';
@@ -125,25 +125,25 @@ function App() {
         <ThreeDText name="prof" content="WORK EXPERIENCE"/>
       </div>
       <div className="work-exp card">
-        <Company name="TeamWave Inc" location="remote" role="Full Stack Developer" start="Oct 2021" end="March 2024"/>
+        <Company name="TeamWave Inc" location="remote" role="Software Developer" start="Oct 2021" end="March 2024"/>
         <div className="text-center-div">
           {aboutWork}
         </div>
         <div className="exp-card">
-      <div className="exp-text">
-        <h3 className="exp-head">TeamWave CRM</h3>
-        <div className="exp-line">
-          Proficiently utilised Angular 17 for standalone component development.
+        <div className="exp-text">
+          <h3 className="exp-head">Work AI</h3>
+          <div className="exp-line">
+          Work AI is a customizable frontend for Gen AI chatbots with additional features.
+          </div>
+          <div className="exp-line">
+          Using LangChain created AI Agents that can perform automated tasks within TeamWave web apps.
+          </div>
+          <div className="exp-line">
+          Integrated multiple Gen AI APIs for text and image generation. Users can switch between different LLMs.
+          </div>
         </div>
-        <div className="exp-line">
-          Implemented NgRx for effective state management within the application.
+        <img  src={workAI} alt="There should be an image here"/>
         </div>
-        <div className="exp-line">
-          Leveraged Nx mono repo for modular code organisation and management.
-        </div>
-      </div>
-      <img  src={crmImg} alt="There should be an image here"/>
-    </div>
     <div className="collapsible-div">
       <a className="resume" href={resume} download={resume}>View Full Resume</a>
     </div>
@@ -153,18 +153,18 @@ function App() {
     <div className="content">
       <div className="exp-card">
         <div className="exp-text">
-          <h3 className="exp-head">TeamWave User Console</h3>
+          <h3 className="exp-head">TeamWave CRM</h3>
           <div className="exp-line">
-            User Console allows the super admin to manage user permissions across all TeamWave web apps.
+          Proficiently utilised Angular 17 for standalone component development.
           </div>
           <div className="exp-line">
-            Using Django Rest Framework created REST APIs with permission handling and authentication to serve data to the frontend.
+          Implemented NgRx for effective state management within the application.
           </div>
           <div className="exp-line">
-            Effectively utilised Django Middleware to track user activity.
+          Leveraged Nx mono repo for modular code organisation and management.
           </div>
         </div>
-        <img  src={usrManageImg}/>
+        <img  src={crmImg} alt="There should be an image here"/>
       </div>
       <div className="exp-card">
         <div className="exp-text">
