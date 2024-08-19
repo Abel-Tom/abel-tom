@@ -13,6 +13,8 @@ import './App.css';
 import { ChangeEvent, MouseEvent, useState, useEffect } from "react";
 
 import axios, { AxiosError } from 'axios';
+import { Analytics } from "@vercel/analytics/react"
+// import { SpeedInsights } from "@vercel/speed-insights/next"
 import ChatBubbleLoader from "./components/ChatBubbleLoader";
 
 
@@ -136,7 +138,10 @@ function App() {
   // test();
 
   return (
+    
     <div className="body-div">
+      {/* <SpeedInsights/> */}
+      <Analytics/>
       {LogComponent()}
       {TestComponent()}
       <div className="align-center-div">
