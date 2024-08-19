@@ -10,11 +10,11 @@ import resume from "./assets/resume.pdf";
 
 import './App.css';
 
-import { ChangeEvent, MouseEvent, useState, useEffect } from "react";
+import { ChangeEvent, MouseEvent, useState, } from "react";
 
 import axios, { AxiosError } from 'axios';
 import { Analytics } from "@vercel/analytics/react"
-// import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/react"
 import ChatBubbleLoader from "./components/ChatBubbleLoader";
 
 
@@ -56,24 +56,6 @@ function App() {
     }
   };
 
-  const TestComponent = () => {
-    useEffect(() => {
-      const fetchData = async () => {
-        const url: string = baseUrl
-        try{
-          const response = await axios.get(url);
-          console.log(response.data);
-        }catch(error: unknown) {
-          const typedError = error as AxiosError;
-          return typedError.code;
-        }
-      };
-  
-      fetchData();
-    }, []);
-    return <div></div>
-  }
-
   const sendPostReq = async (url: string, message: string) =>{
     const data = {
       message: message,
@@ -91,19 +73,6 @@ function App() {
     }
   }
 
-
-  const LogComponent = () => {
-    useEffect(() => {
-      const fetchData = async () => {
-        let resp = await sendPostReq('log', 'hello');
-        resp = '';
-        console.log(resp);
-      };
-  
-      fetchData();
-    }, []);
-    return <div></div>
-  }
   const sendMessage = async () => {
     if (!inputValue || inputValue.trim() === '' || loading) {
       console.log("Input is empty, contains only whitespace or Sentanario is busy");
@@ -140,10 +109,8 @@ function App() {
   return (
     
     <div className="body-div">
-      {/* <SpeedInsights/> */}
+      <SpeedInsights/>
       <Analytics/>
-      {LogComponent()}
-      {TestComponent()}
       <div className="align-center-div">
         <ThreeDText name="hit-the-floor" content="ABEL THOMAS"/>
       </div>
