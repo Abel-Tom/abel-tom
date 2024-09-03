@@ -6,7 +6,11 @@ import ChatBubble from "./components/ChatBubble";
 import crmImg from "./assets/crm-1.webp";
 import esignImg from "./assets/esign 1.webp"
 import workAI from "./assets/WorkAI.webp";
-import resume from "./assets/resume.pdf";
+import twitterImg from "./assets/twitter.png";
+import linkedInImg from "./assets/linkedin.png";
+import gitHubImg from "./assets/github.png";
+import GmailImg from "./assets/gmail.png";
+// import resume from "./assets/resume.pdf";
 
 import './App.css';
 
@@ -21,16 +25,17 @@ import ChatBubbleLoader from "./components/ChatBubbleLoader";
 function App() {
   const [refresh, setRefresh] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
   const Sentanario: string = `Hi, I am Sentanario, Abel's assistant. 
   If you have any questions related to Abel's expertise or availability for work
   you can ask me.`
 
-  const about: string = `Leveraging Python's powerful frameworks for backend development and AngularJS for building engaging frontends. Back in 2017 I read an interesting book called
+  const about: string = `Leveraging Python's powerful frameworks for backend development and Angular for building engaging frontends. Back in 2017 I read an interesting book called
   Automate the Boring Stuff with Python and went down the mesmerizing rabbit hole of Python based software developement.`
 
   const aboutWork: string = `At TeamWave I built work management apps used by small businesses around the world. 
   I played a significant role in building three out of five products that we currently offer. 
-  My work involves building REST APIs using Django or Flask and frontend user interfaces using AngularJS. `
+  My work involves building REST APIs using Django or Flask and frontend user interfaces using React and Angular. `
   const stringList: string[] = ['Developer', 'Problem Solver', 'Designer'];
   // const baseUrl: string = 'http://localhost:8000/';
   const baseUrl: string = 'https://portfolio-dzsa.vercel.app/';
@@ -104,13 +109,45 @@ function App() {
       iDiv.className = "arrow2 up";
     }
   }
-  // test();
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText('abelhevero@gmail.com');
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false),  
+        2000); // Reset after 2 seconds
+    } catch (error) {
+      console.error('Failed to copy text:', error);
+    }
+  }
 
   return (
     
     <div className="body-div">
       <SpeedInsights/>
       <Analytics/>
+      <div className="align-center-div ">
+        <div className="spacer"></div>
+        <a  className="align-center-div" href="https://www.linkedin.com/in/abel-thomas-7b93a2212/">
+          <img   src={linkedInImg} className="icon" alt="LinkedIn Icon"/>
+        </a>
+        <a  className="align-center-div" href="https://github.com/Abel-Tom/">
+          <img  src={gitHubImg} className="icon" alt="GitHub Icon"/>
+        </a>
+        <span  className="align-center-div span-hover" onClick={handleCopy}>
+          <img  src={GmailImg} className="icon" alt="Gmail Icon"/>
+        </span>
+        <a  className="align-center-div" href="https://x.com/Abeltom6/">
+          <img  src={twitterImg} className="icon" alt="Twitter Icon"/>
+        </a>
+        <div className="spacer"></div>
+      </div>
+      <div className="align-center-div margin-bottom">
+        {isCopied ? 
+          <div className="info">email copied</div> : 
+          <div className="empty-info"></div>
+        }
+        
+      </div>
       <div className="align-center-div">
         <ThreeDText name="hit-the-floor" content="ABEL THOMAS"/>
       </div>
@@ -142,11 +179,11 @@ function App() {
           Integrated multiple Gen AI APIs for text and image generation. Users can switch between different LLMs.
           </div>
         </div>
-        <img  src={workAI} alt="There should be an image here"/>
+        <img  className="image" src={workAI} alt="There should be an image here"/>
         </div>
-    <div className="collapsible-div">
+    {/* <div className="collapsible-div">
       <a className="resume" href={resume} download={resume}>View Full Resume</a>
-    </div>
+    </div> */}
     <div className="collapsible-div">
       <button id="collapsible-button" type="button" className="collapsible" onClick={toggleDiv}><div>View More Projects</div><i className="arrow2 down"></i></button>
     </div>
@@ -164,7 +201,7 @@ function App() {
           Leveraged Nx mono repo for modular code organisation and management.
           </div>
         </div>
-        <img  src={crmImg} alt="There should be an image here"/>
+        <img  className="image" src={crmImg} alt="There should be an image here"/>
       </div>
       <div className="exp-card">
         <div className="exp-text">
@@ -179,7 +216,7 @@ function App() {
             Employed Celery to create asynchronous tasks to send notifications, files and reminders.
           </div>
         </div>
-        <img  src={esignImg}/>
+        <img  className="image" src={esignImg}/>
       </div>
     </div>
       </div>

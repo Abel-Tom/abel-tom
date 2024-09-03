@@ -40,7 +40,10 @@ body{
   background-color: #f1f1f1;
   font-family: Helvetica;
   scroll-snap-type: x mandatory;
-  margin: 10% auto;
+  /* margin: 10% auto; */
+  margin-right: auto;
+  margin-bottom: 10%;
+  margin-left: auto;
   max-width: 1000px;
   font-family: Helvetica;
   
@@ -191,7 +194,36 @@ ul.center{
   text-align: center;
 }
 
-img {
+.info{
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: 1px solid rgba(255, 255, 255, .25);
+  background-color: rgb(99, 255, 160);
+  box-shadow: 0px 0px 16px 2px rgba(110, 137, 240, 0.2);
+  backdrop-filter: blur(15px);
+  margin-left: 7.3rem;
+  margin-top: 0.3rem;
+}
+.empty-info{
+  margin-bottom: 2.0rem;
+}
+
+.icon {
+  width: 49%;
+  height: 78%;
+}
+.spacer{
+  width: 223%;
+}
+
+.padding-div {
+  padding-left: 40%;
+  padding-right: 39%;
+}
+
+.image{
   border-radius: 8px;
   max-width: 76%;
   border: 1px solid rgba(255, 255, 255, .25);
@@ -229,7 +261,7 @@ img {
 }
 
 .collapsible {
-  background-color: #eee;
+  background-color: #f1f1f1;;
   color: #444;
   cursor: pointer;
   padding: 18px;
@@ -297,6 +329,9 @@ img {
   /* box-shadow: 0px 0px 10px 2px rgba(14, 15, 15, 0.62); */
   box-shadow: 0px 0px 10px 2px rgba(1, 123, 253, 0.62);
 }
+.span-hover {
+  cursor: pointer;
+}
 
 .skill{
   padding: 2%;
@@ -346,7 +381,7 @@ svg {
 }
 
 .margin-bottom{
-  margin-bottom: 25%;
+  margin-bottom: 18rem;
 }
 
 
