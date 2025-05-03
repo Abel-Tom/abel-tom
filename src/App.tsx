@@ -51,7 +51,7 @@ function App() {
       body: body
     };
     try {
-      const response = await axios.post(utilUrl.concat('send-email'), data);
+      await axios.post(utilUrl.concat('send-email'), data);
       // console.log('Email sent successfully:', response.data);
     } catch (error: unknown) {
       const typedError = error as AxiosError;
