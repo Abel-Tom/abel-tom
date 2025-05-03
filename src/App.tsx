@@ -14,7 +14,7 @@ import GmailImg from "./assets/gmail.png";
 
 import './App.css';
 
-import { ChangeEvent, MouseEvent, useState, } from "react";
+import { ChangeEvent, MouseEvent, useEffect, useState, } from "react";
 
 import axios, { AxiosError } from 'axios';
 import { Analytics } from "@vercel/analytics/react"
@@ -39,8 +39,33 @@ function App() {
   const stringList: string[] = ['Developer', 'Problem Solver', 'Designer'];
   // const baseUrl: string = 'http://localhost:8000/';
   const baseUrl: string = 'https://portfolio-dzsa.vercel.app/';
+  // const utilUrl: string = 'http://localhost:8000/';
+  const utilUrl: string = 'https://fastapi-utility-endpoints.onrender.com/';
   const [items, setItems] = useState([<ChatBubble name="ai" content={Sentanario} />]);
   const [inputValue, setInputValue] = useState('');
+
+  const sendEmail = async (to_email: string = 'abelhevero@gmail.com', subject: string, body: string) => {
+    const data = {
+      to_email: to_email,
+      subject: subject,
+      body: body
+    };
+    try {
+      const response = await axios.post(utilUrl.concat('send-email'), data);
+      console.log('Email sent successfully:', response.data);
+    } catch (error: unknown) {
+      const typedError = error as AxiosError;
+      console.error('Error sending email:', typedError.message);
+    }
+  }
+
+  useEffect(() => {
+    sendEmail(
+      'abelhevero@gmail.com',
+      'Portfolio Visitor Alert',
+      'A visitor has arrived at your portfolio. Please check the analytics dashboard for more information.'
+    );
+  }, []);
 
   const addItem = (elem: JSX.Element, elem2?: JSX.Element) => {
     if (elem2) {
@@ -78,6 +103,17 @@ function App() {
     }
   }
 
+  const UserChat = async (human: string, ai: string) => {
+    const chat = `human: ${human} \n
+    ai: ${ai} \n`
+    sendEmail(
+      'abelhevero@gmail.com',
+      'User Chat Alert',
+      chat
+    )
+
+  }
+
   const sendMessage = async () => {
     if (!inputValue || inputValue.trim() === '' || loading) {
       console.log("Input is empty, contains only whitespace or Sentanario is busy");
@@ -91,6 +127,7 @@ function App() {
     addItem(HumanBubble, AIBubble)
     setInputValue('')
     setLoading(false)
+    UserChat(inputValue, resp)
   }
 
 
