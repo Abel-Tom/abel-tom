@@ -12,8 +12,8 @@ const ChatBubble = (props: Props) => {
     const senter: string = props.name == "user"? "You": "Sentanario";
     const side: string = props.name == "user"? "left": "right";
     const chatBubble: string = side.concat(" ", "chat-bubble");
-    const sentanarioUrl: string = 'http://localhost:8000/';
-    // const sentanarioUrl: string = 'https://portfolio-dzsa.vercel.app/';
+    // const sentanarioUrl: string = 'http://localhost:8000/';
+    const sentanarioUrl: string = 'https://portfolio-dzsa.vercel.app/';
 
     useEffect(() => {
       const streamData = async (name: string, message: string, url: string) => {
