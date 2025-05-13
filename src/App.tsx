@@ -23,7 +23,6 @@ import ChatBubbleLoader from "./components/ChatBubbleLoader";
 
 
 function App() {
-  const [refresh, setRefresh] = useState(true);
   const [loading, setLoading] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const Sentanario: string = `Hi, I am Sentanario, Abel's assistant. 
@@ -37,11 +36,9 @@ function App() {
   I played a significant role in building three out of five products that we currently offer. 
   My work involves building REST APIs using Django and frontend user interfaces using Angular. `
   const stringList: string[] = ['Developer', 'Problem Solver', 'Designer'];
-  // const baseUrl: string = 'http://localhost:8000/';
-  const baseUrl: string = 'https://portfolio-dzsa.vercel.app/';
-  // const utilUrl: string = 'http://localhost:8000/';
+  
   const utilUrl: string = 'https://fastapi-utility-endpoints.onrender.com/';
-  const [items, setItems] = useState([<ChatBubble name="ai" content={Sentanario} />]);
+  const [items, setItems] = useState([<ChatBubble name="ai-ignore" content={Sentanario} />]);
   const [inputValue, setInputValue] = useState('');
 
   const sendEmail = async (to_email: string = 'abelhevero@gmail.com', subject: string, body: string) => {
@@ -52,7 +49,6 @@ function App() {
     };
     try {
       await axios.post(utilUrl.concat('send-email'), data);
-      // console.log('Email sent successfully:', response.data);
     } catch (error: unknown) {
       const typedError = error as AxiosError;
       console.error('Error sending email:', typedError.message);
@@ -86,33 +82,32 @@ function App() {
     }
   };
 
-  const sendPostReq = async (url: string, message: string) => {
-    const data = {
-      message: message,
-      refresh: refresh
-    };
+  // const sendPostReq = async (url: string, message: string) => {
+  //   const data = {
+  //     message: message,
+  //     refresh: refresh
+  //   };
 
-    setRefresh(false);
-    url = baseUrl.concat(url);
-    try {
-      const response = await axios.post(url, data);
-      return response.data.message;
-    } catch (error: unknown) {
-      const typedError = error as AxiosError;
-      return typedError.code;
-    }
-  }
+  //   setRefresh(false);
+  //   url = baseUrl.concat(url);
+  //   try {
+  //     const response = await axios.post(url, data);
+  //     return response.data.message;
+  //   } catch (error: unknown) {
+  //     const typedError = error as AxiosError;
+  //     return typedError.code;
+  //   }
+  // }
 
-  const UserChat = async (human: string, ai: string) => {
-    const chat = `human: ${human} \n
-    ai: ${ai} \n`
-    sendEmail(
-      'abelhevero@gmail.com',
-      'User Chat Alert',
-      chat
-    )
-
-  }
+  // const UserChat = async (human: string, ai: string) => {
+  //   const chat = `human: ${human} \n
+  //   ai: ${ai} \n`
+  //   sendEmail(
+  //     'abelhevero@gmail.com',
+  //     'User Chat Alert',
+  //     chat
+  //   )
+  // }
 
   const sendMessage = async () => {
     if (!inputValue || inputValue.trim() === '' || loading) {
@@ -122,12 +117,12 @@ function App() {
     const HumanBubble = (<ChatBubble name="user" content={inputValue} />)
     addItem(HumanBubble)
     setLoading(true)
-    const resp = await sendPostReq('reply', inputValue);
-    const AIBubble = <ChatBubble name="ai" content={resp} />
+    // const resp = await sendPostReq('reply', inputValue);
+    const AIBubble = <ChatBubble name="ai" content={inputValue} />
     addItem(HumanBubble, AIBubble)
     setInputValue('')
     setLoading(false)
-    UserChat(inputValue, resp)
+    // UserChat(inputValue, resp)
   }
 
 
