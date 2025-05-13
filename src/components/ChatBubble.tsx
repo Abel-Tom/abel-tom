@@ -42,7 +42,6 @@ const ChatBubble = (props: Props) => {
             const { value, done: readerDone } = await reader.read();
             if (value) {
               const chunk = decoder.decode(value, { stream: true });
-              console.log('Received chunk:', chunk);
                 setContent(prevContent => prevContent + chunk);
             }
             done = readerDone;

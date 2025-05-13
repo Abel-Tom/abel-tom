@@ -82,23 +82,6 @@ function App() {
     }
   };
 
-  // const sendPostReq = async (url: string, message: string) => {
-  //   const data = {
-  //     message: message,
-  //     refresh: refresh
-  //   };
-
-  //   setRefresh(false);
-  //   url = baseUrl.concat(url);
-  //   try {
-  //     const response = await axios.post(url, data);
-  //     return response.data.message;
-  //   } catch (error: unknown) {
-  //     const typedError = error as AxiosError;
-  //     return typedError.code;
-  //   }
-  // }
-
   // const UserChat = async (human: string, ai: string) => {
   //   const chat = `human: ${human} \n
   //   ai: ${ai} \n`
