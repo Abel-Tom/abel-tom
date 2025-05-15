@@ -4,6 +4,7 @@ import './ChatBubble.css';
 interface Props {
   name: string;
   content: string;
+  sessionId?: string;
 }
 
 const ChatBubble = (props: Props) => {
@@ -27,7 +28,10 @@ const ChatBubble = (props: Props) => {
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ "message": message })
+            body: JSON.stringify({ 
+              "message": message,
+              "sessionId": props.sessionId    
+            })
           });
   
           if (!response.body) {

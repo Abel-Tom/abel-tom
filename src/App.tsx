@@ -25,6 +25,8 @@ import ChatBubbleLoader from "./components/ChatBubbleLoader";
 function App() {
   const [loading, setLoading] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+  const [sessionId, setSessionId] = useState<string>('');
+  
   const Sentanario: string = `Hi, I am Sentanario, Abel's assistant. 
   If you have any questions related to Abel's expertise or availability for work
   you can ask me.`
@@ -55,11 +57,20 @@ function App() {
     }
   }
 
+  const generateSessionId = (): string => {
+    const timestamp = Date.now();
+    const randomStr = Math.random().toString(36).substring(2, 8);
+    return `session_${timestamp}_${randomStr}`;
+  };
+
   useEffect(() => {
+    const newSessionId = generateSessionId();
+    setSessionId(newSessionId);
     sendEmail(
       'abelhevero@gmail.com',
       'Portfolio Visitor Alert',
-      'A visitor has arrived at your portfolio. Please check the analytics dashboard for more information.'
+      `A visitor has arrived at your portfolio. 
+      New session ${newSessionId} started. Please check the analytics dashboard for more information.`
     );
   }, []);
 
@@ -101,7 +112,7 @@ function App() {
     addItem(HumanBubble)
     setLoading(true)
     // const resp = await sendPostReq('reply', inputValue);
-    const AIBubble = <ChatBubble name="ai" content={inputValue} />
+    const AIBubble = <ChatBubble name="ai" content={inputValue} sessionId={sessionId}/>
     addItem(HumanBubble, AIBubble)
     setInputValue('')
     setLoading(false)
